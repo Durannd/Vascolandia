@@ -1,0 +1,52 @@
+# .gitignore para projeto Java (IntelliJ) no Windows
+# Evita subir arquivos compilados, configurações de IDE, binários e arquivos temporários
+
+# Compiled class files
+*.class
+
+# Build folders
+/bin/
+/out/
+/target/
+/build/
+
+# IntelliJ IDEA
+*.iml
+/.idea/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Maven/Gradle files
+/.mvn/
+.gradle/
+
+# Logs
+*.log
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Environment
+.env
+
+# Ignore local db properties in compiled folder (bin) - keep src/db.properties
+/bin/db.properties
+
+# Optional: ignore user-specific files
+*.swp
+*~
+
+# End of .gitignore
+
