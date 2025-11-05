@@ -22,7 +22,7 @@ public class ClienteDaoImpl implements ClienteDao {
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 Cliente cliente = new Cliente();
-                cliente.setIdCliente(rs.getLong("id"));
+                cliente.setIdCliente(rs.getLong("idCliente"));
                 cliente.setNome(rs.getString("nome"));
                 cliente.setCpf(rs.getString("cpf"));
                 cliente.setTelefone(rs.getString("telefone"));

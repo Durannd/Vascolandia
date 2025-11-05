@@ -1,8 +1,10 @@
 package dao;
 
+import model.entities.Endereco;
+
 public interface EnderecoDao {
-    void create(EnderecoDao endereco);
-    void update(EnderecoDao endereco);
+    void create(Endereco endereco);
+    void update(Endereco endereco);
     void delete(Long idEndereco);
     void findById(Long idEndereco);
 
