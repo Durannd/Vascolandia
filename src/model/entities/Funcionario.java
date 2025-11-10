@@ -1,13 +1,10 @@
 package model.entities;
 
-public class Funcionario {
+public class Funcionario extends Pessoa {
 	private Long idFuncionario;
-	private String nome;
+    private String cargo;
 	private float salario;
-	private int cpf;
-	private String email;
-	private int telefone;
-	private int idEndereco;
+
 
 	public Long getIdFuncionario() {
 		return idFuncionario;
@@ -15,14 +12,6 @@ public class Funcionario {
 
 	public void setIdFuncionario(Long idFuncionario) {
 		this.idFuncionario = idFuncionario;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public float getSalario() {
@@ -33,42 +22,17 @@ public class Funcionario {
 		this.salario = salario;
 	}
 
-	public int getCpf() {
-		return cpf;
-	}
+    public String getCargo() {
+        return cargo;
+    }
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
 
-	public void setCpf(int cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public int getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(int telefone) {
-		this.telefone = telefone;
-	}
-
-	public int getIdEndereco() {
-		return idEndereco;
-	}
-
-	public void setIdEndereco(int idEndereco) {
-		this.idEndereco = idEndereco;
-	}
-
-	@Override
+    @Override
 	public String toString() {
-		return "Funcionario [idFuncionario=" + idFuncionario + ", nome=" + nome + ", salario=" + salario + ", cpf="
-				+ cpf + ", email=" + email + ", telefone=" + telefone + ", idEndereco=" + idEndereco + "]";
+		return "Funcionario [idFuncionario=" + idFuncionario + ", nome=" + getNome() + ", salario=" + salario + ", cpf="
+				+ getCpf() + ", email=" + getEmail() + ", telefone=" + getTelefone() + ", idEndereco=" + getIdEndereco() + "]";
 	}
 
 }
