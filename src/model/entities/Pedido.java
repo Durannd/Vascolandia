@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Pedido {
 	private Long idPedido;
@@ -17,7 +18,7 @@ public class Pedido {
 		this.idPedido = idPedido;
 	}
 
-	public Date getData_hora() {
+	public Timestamp getData_hora() {
 		return data_hora;
 	}
 
