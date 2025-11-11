@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 public class Pedido {
 	private Long idPedido;
-	private Date data_hora;
+	private Timestamp data_hora;
 	private float valor_total;
 	private Long idCliente;
 	private String status;
