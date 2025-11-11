@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface PedidoDao {
     void create(Pedido pedido, List<Prato> pratos);
-    void update(Pedido pedido);
+    void update(Pedido pedido, List<Prato> pratos);
     void delete(Long idPedido);
     Pedido buscarPorId(Long idPedido);
     List<Pedido> buscarTodos();
-    List<Pedido> buscarTodosPorCpfCliente(Long idCliente);
+    List<Pedido> buscarTodosPorCpfCliente(Long cpf);
 }

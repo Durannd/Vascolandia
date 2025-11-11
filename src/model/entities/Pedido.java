@@ -22,7 +22,7 @@ public class Pedido {
 		return data_hora;
 	}
 
-	public void setData_hora(Date data_hora) {
+	public void setData_hora(Timestamp data_hora) {
 		this.data_hora = data_hora;
 	}
 
