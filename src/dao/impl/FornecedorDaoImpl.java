@@ -18,7 +18,7 @@ public class FornecedorDaoImpl implements FornecedorDao {
         try (Connection conn = DB.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO fornecedor (nome, cnpj, telefone) VALUES (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1, fornecedor.getNome());
-            stmt.setString(2, fornecedor.getCpnj());
+            stmt.setString(2, fornecedor.getCnpj());
             stmt.setString(3, fornecedor.getTelefone());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
@@ -36,7 +36,7 @@ public class FornecedorDaoImpl implements FornecedorDao {
         try(Connection conn = DB.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement("UPDATE fornecedor SET nome = ?, cnpj = ?, telefone = ? WHERE id_fornecedor = ?", PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1, fornecedor.getNome());
-            stmt.setString(2, fornecedor.getCpnj());
+            stmt.setString(2, fornecedor.getCnpj());
             stmt.setString(3, fornecedor.getTelefone());
             stmt.setLong(4, fornecedor.getIdFornecedor());
             stmt.executeUpdate();
@@ -70,7 +70,7 @@ public class FornecedorDaoImpl implements FornecedorDao {
                 Fornecedor fornecedor = new Fornecedor();
                 fornecedor.setIdFornecedor(rs.getLong("id_fornecedor"));
                 fornecedor.setNome(rs.getString("nome"));
-                fornecedor.setCpnj(rs.getString("cnpj"));
+                fornecedor.setCnpj(rs.getString("cnpj"));
                 fornecedor.setTelefone(rs.getString("telefone"));
                 fornecedores.add(fornecedor);
             }
@@ -97,7 +97,7 @@ public class FornecedorDaoImpl implements FornecedorDao {
                 Fornecedor fornecedor = new Fornecedor();
                 fornecedor.setIdFornecedor(rs.getLong("id_fornecedor"));
                 fornecedor.setNome(rs.getString("nome"));
-                fornecedor.setCpnj(rs.getString("cnpj"));
+                fornecedor.setCnpj(rs.getString("cnpj"));
                 fornecedor.setTelefone(rs.getString("telefone"));
                 return fornecedor;
             } else {
@@ -118,7 +118,7 @@ public class FornecedorDaoImpl implements FornecedorDao {
                 Fornecedor fornecedor = new Fornecedor();
                 fornecedor.setIdFornecedor(rs.getLong("id_fornecedor"));
                 fornecedor.setNome(rs.getString("nome"));
-                fornecedor.setCpnj(rs.getString("cnpj"));
+                fornecedor.setCnpj(rs.getString("cnpj"));
                 fornecedor.setTelefone(rs.getString("telefone"));
                 return fornecedor;
             } else {

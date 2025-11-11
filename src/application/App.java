@@ -6,10 +6,10 @@ import dao.FornecedorDao;
 import dao.impl.ClienteDaoImpl;
 import dao.impl.FornecedorDaoImpl;
 import model.entities.Cliente;
+import view.LoginView;
 
 public class App {
     public static void main(String[] args) {
-       FornecedorDao fornecedorDao = new FornecedorDaoImpl();
-       fornecedorDao.buscarPorAlimento("vasco");
+      LoginView loginView = new LoginView();
     }
 }
