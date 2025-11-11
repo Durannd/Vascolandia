@@ -18,10 +18,10 @@ public class Fornecedor {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getCpnj() {
+	public String getCnpj() {
 		return cpnj;
 	}
-	public void setCpnj(String cpnj) {
+	public void setCnpj(String cpnj) {
 		this.cpnj = cpnj;
 	}
 	public String getTelefone() {

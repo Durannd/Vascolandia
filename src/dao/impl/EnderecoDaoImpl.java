@@ -75,7 +75,7 @@ public class EnderecoDaoImpl implements EnderecoDao {
     }
 
     @Override
-    public void findById(Long idEndereco) {
+    public Endereco findById(Long idEndereco) {
         try(Connection conn = DB.getConnection()){
             PreparedStatement stmt = conn.prepareStatement("select * from endereco where id_endereco = ?");
             stmt.setLong(1, idEndereco);
@@ -90,11 +90,12 @@ public class EnderecoDaoImpl implements EnderecoDao {
                 endereco.setCep(rs.getString("cep"));
                 endereco.setComplemento(rs.getString("complemento"));
                 endereco.setBairro(rs.getString("bairro"));
+                stmt.close();
+                rs.close();
+                return endereco;
             }else{
                 throw new ResourceNotFoundException();
             }
-            rs.close();
-            stmt.close();
         } catch (SQLException e) {
             throw new DataAccessException( e.getMessage());
         }

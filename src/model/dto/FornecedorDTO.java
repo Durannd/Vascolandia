@@ -2,7 +2,7 @@ package model.dto;
 
 public record FornecedorDTO(Long idFornecedor,
                             String nome,
-                            String cpnj,
+                            String cnpj,
                             String telefone,
                             Long idEndereco) {
 }
