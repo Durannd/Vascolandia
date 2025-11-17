@@ -1,114 +1,74 @@
 package view;
 
 import javax.swing.*;
+
+import model.dto.FuncionarioDTO;
+import model.entities.Funcionario;
+
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LoginView extends JFrame {
-
-    private static final int MARGIN = 30;
-    private static final int V_GAP = 20;
-    private static final int LABEL_WIDTH = 80;
-    private static final int FIELD_WIDTH = 250;
-    private static final int FIELD_HEIGHT = 28;
-
-    private JTextField userField;
-    private JPasswordField passField;
-    private JButton loginButton;
-    private JLabel statusLabel;
+	private static final long serialVersionUID = 1L;
+	
+	
 
     public LoginView() {
+    	setResizable(false);
         setTitle("Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 300);
+        setSize(400, 244);
         setLocationRelativeTo(null);
-        setResizable(false);
-        init();
+        SpringLayout springLayout = new SpringLayout();
+        getContentPane().setLayout(springLayout);
+        
+        JFormattedTextField txtFieldCpf = new JFormattedTextField();
+        springLayout.putConstraint(SpringLayout.WEST, txtFieldCpf, 38, SpringLayout.WEST, getContentPane());
+        springLayout.putConstraint(SpringLayout.SOUTH, txtFieldCpf, -96, SpringLayout.SOUTH, getContentPane());
+        springLayout.putConstraint(SpringLayout.EAST, txtFieldCpf, -89, SpringLayout.EAST, getContentPane());
+        txtFieldCpf.setFocusLostBehavior(JFormattedTextField.REVERT);
+        txtFieldCpf.setToolTipText("");
+        getContentPane().add(txtFieldCpf);
+        
+        JLabel lblTitle = new JLabel("Faça seu login");
+        springLayout.putConstraint(SpringLayout.NORTH, lblTitle, 24, SpringLayout.NORTH, getContentPane());
+        springLayout.putConstraint(SpringLayout.WEST, lblTitle, 98, SpringLayout.WEST, getContentPane());
+        lblTitle.setFont(new Font("Verdana", Font.BOLD, 20));
+        getContentPane().add(lblTitle);
+        
+        JLabel lblCpf = new JLabel("Digite seu cpf:");
+        springLayout.putConstraint(SpringLayout.NORTH, txtFieldCpf, 6, SpringLayout.SOUTH, lblCpf);
+        springLayout.putConstraint(SpringLayout.WEST, lblCpf, 38, SpringLayout.WEST, getContentPane());
+        springLayout.putConstraint(SpringLayout.NORTH, lblCpf, 19, SpringLayout.SOUTH, lblTitle);
+        getContentPane().add(lblCpf);
+        
+        JButton btnLogin = new JButton("Login");
+        springLayout.putConstraint(SpringLayout.NORTH, btnLogin, 6, SpringLayout.SOUTH, txtFieldCpf);
+        springLayout.putConstraint(SpringLayout.WEST, btnLogin, 125, SpringLayout.WEST, getContentPane());
+        springLayout.putConstraint(SpringLayout.SOUTH, btnLogin, -57, SpringLayout.SOUTH, getContentPane());
+        springLayout.putConstraint(SpringLayout.EAST, btnLogin, 215, SpringLayout.WEST, getContentPane());
+        getContentPane().add(btnLogin);
+        
+        txtFieldCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                if (!Character.isDigit(c)) {
+                    evt.consume(); 
+                }
+            }
+        });
+        
+        btnLogin.addActionListener(e -> {
+        	FuncionarioDTO f = new FuncionarioDTO(1L, "Operador de Caixa", 1500.98F, "Ricael Durand", "46856663803", "ricaelmenezes@gmail.com"
+        			, "11952719041", 15L );
+        	
+        	dispose();
+        	InitialView i = new InitialView(f);
+        });
+        
         setVisible(true);
     }
 
-    private void init() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new SpringLayout());
-
-
-        JLabel title = new JLabel("Login");
-        title.setFont(title.getFont().deriveFont(Font.BOLD, 24f));
-        panel.add(title);
-
-        JLabel userLabel = new JLabel("Usuário:");
-        panel.add(userLabel);
-
-        userField = new JTextField();
-        userField.setPreferredSize(new Dimension(FIELD_WIDTH, FIELD_HEIGHT));
-        panel.add(userField);
-
-        JLabel passLabel = new JLabel("Senha:");
-        panel.add(passLabel);
-
-        passField = new JPasswordField();
-        passField.setPreferredSize(new Dimension(FIELD_WIDTH, FIELD_HEIGHT));
-        panel.add(passField);
-
-        loginButton = new JButton("Entrar");
-        panel.add(loginButton);
-
-        statusLabel = new JLabel(" ");
-        statusLabel.setForeground(Color.GRAY);
-        panel.add(statusLabel);
-
-
-        layout.putConstraint(SpringLayout.NORTH, title, MARGIN, SpringLayout.NORTH, panel);
-        layout.putConstraint(SpringLayout.HORIZONTAL_CENTER, title, 0, SpringLayout.HORIZONTAL_CENTER, panel);
-
-
-        layout.putConstraint(SpringLayout.NORTH, userLabel, V_GAP, SpringLayout.SOUTH, title);
-        layout.putConstraint(SpringLayout.WEST, userLabel, MARGIN, SpringLayout.WEST, panel);
-        layout.putConstraint(SpringLayout.NORTH, userField, 0, SpringLayout.NORTH, userLabel);
-        layout.putConstraint(SpringLayout.WEST, userField, 10, SpringLayout.EAST, userLabel);
-
-
-        layout.putConstraint(SpringLayout.NORTH, passLabel, V_GAP, SpringLayout.SOUTH, userField);
-        layout.putConstraint(SpringLayout.WEST, passLabel, MARGIN, SpringLayout.WEST, panel);
-        layout.putConstraint(SpringLayout.NORTH, passField, 0, SpringLayout.NORTH, passLabel);
-        layout.putConstraint(SpringLayout.WEST, passField, 10, SpringLayout.EAST, passLabel);
-
-
-        layout.putConstraint(SpringLayout.NORTH, loginButton, V_GAP, SpringLayout.SOUTH, passField);
-        layout.putConstraint(SpringLayout.WEST, loginButton, MARGIN, SpringLayout.WEST, panel);
-
-
-        layout.putConstraint(SpringLayout.NORTH, statusLabel, V_GAP / 2, SpringLayout.SOUTH, loginButton);
-        layout.putConstraint(SpringLayout.WEST, statusLabel, MARGIN, SpringLayout.WEST, panel);
-        layout.putConstraint(SpringLayout.EAST, statusLabel, -MARGIN, SpringLayout.EAST, panel);
-
-        loginButton.addActionListener(e -> autenticar());
-
-        setContentPane(panel);
-    }
-
-    private void autenticar() {
-        String usuario = userField.getText().trim();
-        char[] senha = passField.getPassword();
-
-        if (usuario.isEmpty() || senha.length == 0) {
-            statusLabel.setForeground(Color.RED);
-            statusLabel.setText("Preencha usuário e senha.");
-            return;
-        }
-
-
-        if (usuario.equals("admin") && String.valueOf(senha).equals("123")) {
-            statusLabel.setForeground(new Color(0,128,0));
-            statusLabel.setText("Login realizado.");
-
-        } else {
-            statusLabel.setForeground(Color.RED);
-            statusLabel.setText("Credenciais inválidas.");
-        }
-
-
-
-    }
-
-
+   
 }
